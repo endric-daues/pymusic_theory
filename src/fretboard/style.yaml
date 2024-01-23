@@ -1,0 +1,27 @@
+drawing:
+    background_color: white
+    font_color: dimgray
+    font_family: Lato
+    font_size: 10
+    height: 300
+    width: 1400
+    spacing: 30
+    orientation: landscape
+nut:
+    color: darkslategray
+    size: 10
+fret:
+    color: darkgray
+    size: 2
+inlays:
+    color: black
+    radius: 4
+string:
+    color: darkslategray
+    size: 3
+marker:
+    border_color: darkslategray
+    color: steelblue
+    font_color: white
+    radius: 12
+    stroke_width: 1
