@@ -25,7 +25,7 @@ class Note:
         return f"Note(name='{self.name}', pitch={self.pitch:.0f})"
 
     def __eq__(self, other):
-        return self.name == other.name and round(self.pitch, 0) == round(other.pitch, 0)
+        return round(self.pitch, 0) == round(other.pitch, 0)
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -52,10 +52,10 @@ class Scale:
     """
 
     def __init__(self, name: str, base_note: Note, intervals: List[int]) -> List[Note]:
-        self.name = name
-        self.base_note = base_note
-        self.intervals = intervals
-        self.notes = []
+        self.name: str = name
+        self.base_note: Note = base_note
+        self.intervals: List[int] = intervals
+        self.notes: List[Note] = []  # TODO: rethink this
         self.generate_scale()
 
     def generate_scale(self):
@@ -76,6 +76,9 @@ class Scale:
             next_note = Note(theory.notes[current_index % 12], next_pitch)
             self.notes.append(next_note)
             current_note = next_note
+
+    def __getitem__(self, index: int):
+        return self.notes[(index - 1) % len(self.notes)]
 
     def __iter__(self):
         return iter(self.notes)
@@ -111,8 +114,36 @@ class TheoryMaster:
             "Bb",
             "B",
         ]
+        self.modes = [
+            "ionian",
+            "dorian",
+            "phrygian",
+            "lydian",
+            "mixolydian",
+            "aeolian",
+            "locrian",
+        ]
         self.major_intervals: List[int] = [2, 2, 1, 2, 2, 2, 1]
         self.minor_intervals: List[int] = [2, 1, 2, 2, 1, 2, 2]
+        self.dim_intervals: List[int] = [2, 1, 2, 1, 2, 1, 2]
+
+    def get_mode_intervals(self, mode: str):
+        """
+        Returns the intervals of the specified mode.
+
+        Args:
+            mode (str): The mode for which to retrieve the intervals.
+
+        Returns:
+            list: A list of intervals representing the specified mode.
+
+        Raises:
+            ValueError: If an invalid mode is provided.
+        """
+        if mode not in self.modes:
+            raise ValueError(f"Invalid mode: {mode}")
+        else:
+            return self.invert(self.major_intervals, self.modes.index(mode))
 
     def note_stream(self, starting_note: str, n: int = 12):
         """
@@ -164,8 +195,16 @@ class TheoryMaster:
         """
         if interval == "major":
             return self.invert([0, 4, 7], inversion)
+        elif interval == "major_7":
+            return self.invert([0, 4, 7, 11], inversion)
         elif interval == "minor":
             return self.invert([0, 3, 7], inversion)
+        elif interval == "minor_7":
+            return self.invert([0, 3, 7, 10], inversion)
+        elif interval == "dom_7":
+            return self.invert([0, 4, 7, 10], inversion)
+        elif interval == "dim":
+            return self.invert([0, 3, 6], inversion)
         else:
             raise ValueError(f"Invalid triad type: {interval}")
 
