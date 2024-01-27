@@ -1,2 +1,3 @@
 attrdict
 svgwrite
+pyyaml
