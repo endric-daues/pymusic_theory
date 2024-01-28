@@ -9,7 +9,7 @@
 
 ## TL;DR
 
-This repo is a collection of Python classes and notebooks I wrote to help me learn music theory. I read [Music by the Numbers](https://press.princeton.edu/books/paperback/9780691202969/music-by-the-numbers) and [Twenthieth Century Harmony](https://wwnorton.com/books/9780393095395) before implementing this. I was looking for a way to build some intuitions around the theory independently of playing an instrument. This seemed to be the best approach.  This code is intended to be used to generate triads, scales, chords, chord progressions. If I want to generate a complex 2-5-1 based Jazz progression, this code should let me do it with a couple function calls. The generated visualizations of scales, triads, chords, etc. are geared towards piano and electric guitar. Current features include:
+This repo is a collection of Python classes and notebooks I wrote to help me learn music theory. I read [Music by the Numbers](https://press.princeton.edu/books/paperback/9780691202969/music-by-the-numbers) and [Twentieth Century Harmony](https://wwnorton.com/books/9780393095395) before implementing this. I was looking for a way to build some intuitions around the theory independently of playing an instrument. This seemed to be the best approach.  This code is intended to be used to generate triads, scales, chords, chord progressions. If I want to generate a complex 2-5-1 based Jazz progression, this code should let me do it with a couple function calls. The generated visualizations of scales, triads, chords, etc. are geared towards piano and electric guitar. Current features include:
 * Build notes, scales, triads.
 * Visualize the fretboard and notes, scales, triads.
 * Generate scales in music notation.
