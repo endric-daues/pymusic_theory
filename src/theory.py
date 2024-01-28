@@ -1,4 +1,3 @@
-from abc import abstractmethod
 from typing import List, Literal
 
 
@@ -161,7 +160,6 @@ class TheoryMaster:
             yield self.notes[index % 12]
             index += 1
 
-    @abstractmethod
     def get_pitch(self, pitch: float, interval: int) -> float:
         """
         Calculates the pitch after applying the specified interval using equal temperament.
@@ -175,7 +173,6 @@ class TheoryMaster:
         """
         return ((2 ** (1 / 12)) ** interval) * pitch
 
-    @abstractmethod
     def get_triad_intervals(
         self, interval: Literal["major", "minor"], inversion: int = 0
     ):
@@ -207,7 +204,6 @@ class TheoryMaster:
         else:
             raise ValueError(f"Invalid triad type: {interval}")
 
-    @abstractmethod
     def invert(self, intervals: List[int], n: int):
         """
         Inverts the given list of intervals by adding 12 to each interval

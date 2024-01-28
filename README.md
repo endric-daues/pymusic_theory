@@ -78,7 +78,6 @@ The equality method and its negation ensure that equality between notes is deter
 I utilized the following formula to compute the pitch of a note given the interval distance, which is based on the equal-tempered scale:
 
 ```python
-@abstractmethod
 def get_pitch(self, pitch: float, interval: int) -> float:
     return ((2 ** (1 / 12)) ** interval) * pitch
 ```
@@ -145,7 +144,6 @@ def get_triad(
 So far the intervals are hardcoded in `get_triad_intervals`, but I am working on how to generate them more naturally. To handle the inversion, we just implement the method exactly as it happens in the theory: remove the base note and add it to the top (plus one octave).
 
 ```python
-@abstractmethod
 def invert(self, intervals: List[int], n: int):
     for i in range(n):
         base = intervals.pop(0) + 12
@@ -164,10 +162,8 @@ class Instrument:
         self.name = name
         self.notes: Dict[Note, List[int]] = {}
 
-    @abstractmethod
     def _initiate(self):
 
-    @abstractmethod
     def play(self, notes: List[Note]) -> List[int]:
 ```
 
