@@ -144,7 +144,7 @@ def get_triad(
 ```
 So far the intervals are hardcoded in `get_triad_intervals`, but I am working on how to generate them more naturally. To handle the inversion, we just implement the method exactly as it happens in the theory: remove the base note and add it to the top (plus one octave).
 
-```
+```python
 @abstractmethod
 def invert(self, intervals: List[int], n: int):
     for i in range(n):
