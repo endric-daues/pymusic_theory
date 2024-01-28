@@ -315,6 +315,6 @@ analyzer.visualize_fretboard(e_major_scale_coords, path, frets=(0,22), color="na
 Which produces
 
 <div style="text-align: center;">
-    <img src="./images/fretboard/e_major_scale.svg" alt="Cover" width="1000" height="216">
+    <img src="./images/fretboard/e_major_scale.svg" alt="Cover" width="750" height="162">
     <p align="center"></p>
 </div>
