@@ -23,8 +23,7 @@ I recommend interacting with the code through a Python notebook. Check out `runn
 I utilize [PyEnv](https://github.com/pyenv/pyenv) with [virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage my Python distributions.
 
 <div style="text-align: center;">
-    <img src="./images/docs/env.png" alt="Cover" width="600" height="384">
-    <p align="center"></p>
+    <img src="./images/docs/env.png" alt="Cover" width="600" height="384">    
 </div>
 
 This project requires the following packages, which can be installed through pip.
@@ -56,7 +55,7 @@ Ultimately, the goal is to make this library work entirely on note frequencies, 
 
 The note class is parameterized by a note name (C, D, D#, Eb, etc.) and a frequency. 
 
-```
+```python
 class Note:
     def __init__(self, name: str, pitch: float):
         self.name: str = name
@@ -78,7 +77,7 @@ The equality method and its negation ensure that equality between notes is deter
 
 I utilized the following formula to compute the pitch of a note given the interval distance, which is based on the equal-tempered scale:
 
-```
+```python
 @abstractmethod
 def get_pitch(self, pitch: float, interval: int) -> float:
     return ((2 ** (1 / 12)) ** interval) * pitch
@@ -90,7 +89,7 @@ This is discussed on Page 72 in [Music by the Numbers](https://press.princeton.e
 
 Scales implement a list of notes. Given a base note and a list of intervals, initiating the scale class will generate an array of notes that can be iterated over. Again, we utilize the `get_pitch` method to compute the next note.
 
-```
+```python
 class Scale:
     def __init__(self, name: str, base_note: Note, intervals: List[int]) -> List[Note]:
         self.name: str = name
@@ -130,7 +129,7 @@ To handle all music theory core concepts, I made a `TheoryMaster` class, which c
 
 To handle the inversions, we separate the interval to note lookup from the interval selection, which is where the inverting happens. The lookup is simple enough:
 
-```
+```python
 def get_triad(
     self,
     note: Note,
@@ -159,7 +158,7 @@ def invert(self, intervals: List[int], n: int):
 
 The instrument base class defines the initiate and play class. The notes propert is initialized, and the play method returns the keys The notes property maps a note to a list of keys where this note can be played.
 
-```
+```python
 class Instrument:
     def __init__(self, name: str):
         self.name = name
@@ -186,7 +185,7 @@ I would suggest walking through `runner.py`, I have tried to demo all the functi
 
 Using the MIDI chart to lookup a C, we can easily generate a scale.
 
-```
+```python
 theory = TheoryMaster()
 
 c = Note("C", 261.63)
@@ -195,7 +194,7 @@ print(c_major_scale)
 ```
 Generates
 
-```
+```python
 >>["Note(name='C', pitch=262)", "Note(name='D', pitch=294)", "Note(name='E', pitch=330)", "Note(name='F', pitch=349)", "Note(name='G', pitch=392)", "Note(name='A', pitch=440)", "Note(name='B', pitch=494)"]
 ```
 
@@ -203,7 +202,7 @@ Generates
 
 We can also pass a triad interval by retrieving it from the theory class.
 
-```
+```python
 # major triad
 c = Note("C", 261.63)
 major_triad_intervals = theory.get_triad_intervals("major")
@@ -215,7 +214,7 @@ triad = theory.get_triad(c, major_triad_intervals)
 
 which returns
 
-```
+```python
 >>[0, 4, 7]
 >>Note(name='C', pitch=262)
 >>Note(name='E', pitch=330)
@@ -224,7 +223,7 @@ which returns
 
 As mentioned, this implementation facilitates inversions:
 
-```
+```python
 # major triad first inversion
 c = Note("C", 261.63)
 major_triad_intervals = theory.get_triad_intervals("major", inversion=1)
@@ -236,7 +235,7 @@ triad = theory.get_triad(c, major_triad_intervals)
 
 Which I find make them very intuitive:
 
-```
+```python
 >>[4, 7, 12]
 >>Note(name='E', pitch=330)
 >>Note(name='G', pitch=392)
@@ -249,7 +248,7 @@ Which I find make them very intuitive:
 
 Currently just supports initialization and playing.
 
-```
+```python
 piano = Piano(88, Note("A", 27.5))
 
 # middle A
@@ -260,7 +259,7 @@ for i in range(len(piano.keys)):
     print(piano.keys[i])
 ```
 Returns
-```
+```python
 >>Middle A: Note(name='A', pitch=440)
 >>Note(name='A', pitch=28)
 >>Note(name='Bb', pitch=29)
@@ -273,7 +272,7 @@ Returns
 
 The guitar is also super simple to initialize in any tuning:
 
-```
+```python
 standard_tuning = [
     Note("E", 82.41),
     Note("A", 110.00),
@@ -289,7 +288,7 @@ analyzer = GuitarAnalyzer(guitar)
 
 The guitar returns the key numbers that can produce the pitch.
 
-```
+```python
 # play major triad second inversion
 strum_guitar = guitar.play(triad)
 print(strum_guitar)
@@ -304,7 +303,7 @@ And we can convert these into string/fret coordinates, and process these to retu
 
 Finally, we can put triads, the guitar, and the `python-fretboard` library together to produce some fretboard diagrams:
 
-```
+```python
 # E Major scale
 e = Note("E", 82.41)
 e_major_scale = Scale("e_major", e, theory.major_intervals)
