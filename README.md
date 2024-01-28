@@ -119,7 +119,7 @@ class Scale:
     def __str__(self):
         return f"{[str(note) for note in self.notes]}"
 ```
-Not that the get method facilitates indexing by the scale integer, not zero indexing, hence the `-1`.
+Note that the get method facilitates indexing by the scale integer, not zero indexing, hence the `-1`.
 
 ### Triads
 
