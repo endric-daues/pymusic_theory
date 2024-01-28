@@ -162,8 +162,10 @@ class Instrument:
         self.name = name
         self.notes: Dict[Note, List[int]] = {}
 
+    @abstractmethod
     def _initiate(self):
 
+    @abstractmethod
     def play(self, notes: List[Note]) -> List[int]:
 ```
 
