@@ -293,7 +293,7 @@ The guitar returns the key numbers that can produce the pitch.
 strum_guitar = guitar.play(triad)
 print(strum_guitar)
 ```
-```
+```python
 >>>[[54, 64, 73], [69, 78], [82]]
 ```
 
