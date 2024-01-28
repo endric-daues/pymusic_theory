@@ -55,7 +55,7 @@ class Scale:
         self.name: str = name
         self.base_note: Note = base_note
         self.intervals: List[int] = intervals
-        self.notes: List[Note] = []  # TODO: rethink this
+        self.notes: List[Note] = [self.base_note]
         self.generate_scale()
 
     def generate_scale(self):
@@ -66,7 +66,6 @@ class Scale:
             List[Note]: A list of notes in the scale.
         """
         theory = TheoryMaster()
-        self.notes.append(self.base_note)
         current_note = self.base_note
         current_index = theory.notes.index(self.base_note.name)
 

@@ -29,7 +29,7 @@ class Instrument:
         """
 
     @abstractmethod
-    def play(self, notes: List[Note]):
+    def play(self, notes: List[Note]) -> List[int]:
         """
         Abstract method to play a list of notes on the instrument.
 
