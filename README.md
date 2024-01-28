@@ -23,7 +23,7 @@ I recommend interacting with the code through a Python notebook. Check out `runn
 I utilize [PyEnv](https://github.com/pyenv/pyenv) with [virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage my Python distributions.
 
 <div style="text-align: center;">
-    <img src="./images/docs/env.png" alt="Cover" width="800" height="520">
+    <img src="./images/docs/env.png" alt="Cover" width="600" height="384">
     <p align="center"></p>
 </div>
 
